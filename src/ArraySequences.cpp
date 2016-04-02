@@ -58,8 +58,6 @@ int * find_sequences(int *arr, int len){
 				else
 					start++;
 			}
-			for (i = 0; i < 4; i++)
-				printf("%d", res[i]);
 			start = 0;
 			while (k != 6)
 			{
