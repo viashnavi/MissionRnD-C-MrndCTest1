@@ -76,6 +76,7 @@ int merge_circularlists(struct node **head1, struct node **head2){
 			count++;
 			temp1 = temp1->next;
 		}
+		r = sortLinkedList(r);
 		*head1 = r;
 		return count;
 	}
