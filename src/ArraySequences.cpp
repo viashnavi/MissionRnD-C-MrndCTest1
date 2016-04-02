@@ -32,59 +32,61 @@ Difficulty : Medium
 #include <math.h>
 
 int * find_sequences(int *arr, int len){
-	int i, diff, res[6], start = 0, k = 0;
-	float diff1;
-	if (arr&&len > 1)
-	{
-		while (k != 4)
+	if (arr != NULL){
+		int i, diff, res[6], start = 0, k = 0;
+		float diff1;
+		if (arr&&len > 1)
 		{
-			diff = arr[start + 1] - arr[start];
-			for (i = start + 1; i < len - 1; i++)
+			while (k != 4)
 			{
-				if (arr[i + 1] - arr[i] != diff)
-				{
-					break;
-				}
-			}
-			if ((i != start + 1))
-			{
-				res[k] = start;
-				k++;
-				res[k] = i;
-				k++;
-				start = i;
-			}
-			else
-				start++;
-		}
-		for (i = 0; i < 4; i++)
-			printf("%d", res[i]);
-		start = 0;
-		while (k != 6)
-		{
-			diff1 = (float)(arr[start + 1] / arr[start]);
-			if (ceil((double)diff1) == floor((double)diff1))
-			{
+				diff = arr[start + 1] - arr[start];
 				for (i = start + 1; i < len - 1; i++)
 				{
-					if ((arr[i + 1] / arr[i]) != diff1)
+					if (arr[i + 1] - arr[i] != diff)
 					{
 						break;
 					}
 				}
+				if ((i != start + 1))
+				{
+					res[k] = start;
+					k++;
+					res[k] = i;
+					k++;
+					start = i;
+				}
+				else
+					start++;
 			}
-			if ((i != start + 1))
+			for (i = 0; i < 4; i++)
+				printf("%d", res[i]);
+			start = 0;
+			while (k != 6)
 			{
-				res[k] = start;
-				k++;
-				res[k] = i;
-				k++;
-				start = i;
+				diff1 = (float)(arr[start + 1] / arr[start]);
+				if (ceil((double)diff1) == floor((double)diff1))
+				{
+					for (i = start + 1; i < len - 1; i++)
+					{
+						if ((arr[i + 1] / arr[i]) != diff1)
+						{
+							break;
+						}
+					}
+				}
+				if ((i != start + 1))
+				{
+					res[k] = start;
+					k++;
+					res[k] = i;
+					k++;
+					start = i;
+				}
+				else
+					start++;
 			}
-			else
-				start++;
+			return res;
 		}
-		return res;
 	}
 	return NULL;
 }
