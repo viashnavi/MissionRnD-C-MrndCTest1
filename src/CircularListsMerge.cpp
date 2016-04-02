@@ -32,7 +32,52 @@ struct node{
 	int data;
 	struct node *next;
 };
+struct node * sortLinkedList(struct node *head) {
+	if (head != NULL){
+		struct node* temp1;
+		struct node* temp2;
+		struct node* temp = NULL;
+		for (temp1 = head; temp1->next != head; temp1 = temp1->next){
+			temp = temp1;
+			for (temp2 = temp1->next; temp2 != head; temp2 = temp2->next){
+				if (temp1->data > temp2->data){
+					int t = temp1->data;
+					temp1->data = temp2->data;
+					temp2->data = t;
+				}
+			}
+		}
+		return head;
+	}
+	return NULL;
+}
+
 int merge_circularlists(struct node **head1, struct node **head2){
 	//Returns Length of merged Sorted circular SLL and also points *head1 to final SLL .
+	struct node* p = (struct node*)*head1;
+	struct node* q = (struct node*)*head2;
+	if (p != NULL && q != NULL){
+
+		struct node *temp = NULL;
+		struct node *r = NULL;
+		r = p;
+		temp = p;
+		while (temp->next != p)
+			temp = temp->next;
+		temp->next = q;
+		temp = q;
+		while (temp->next != q)
+			temp = temp->next;
+		temp->next = r;
+		struct node* temp1 = r;
+		int count = 1;
+		temp1 = temp1->next;
+		while (temp1 != r){
+			count++;
+			temp1 = temp1->next;
+		}
+		*head1 = r;
+		return count;
+	}
 	return -1;
 }
